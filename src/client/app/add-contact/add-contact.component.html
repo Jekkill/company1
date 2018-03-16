@@ -1,3 +1,53 @@
-<p>
-  add-contact works!
-</p>
+<div class="form-container">
+  <mat-card class="form-card"> 
+    <mat-card-header>
+      <mat-card-title>Добавить сотрудника</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+    <form class="form" #contactForm="ngForm" (submit)='onSubmit'> 
+      <mat-form-field>
+        <input matInput type="text" placeholder="Имя" name="firstName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Фамилия" name="lastName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Отчество" name="patronymic">
+      </mat-form-field>
+      <mat-radio-group name="gender">
+        <label> Пол: </label>
+        <mat-radio-button value="М">М</mat-radio-button>
+        <mat-radio-button value="Ж">Ж</mat-radio-button>
+      </mat-radio-group>
+      <button (click)="fileInput.click()">
+        <mat-icon>library_add</mat-icon>
+          <span>Select</span>
+        <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
+      </button>
+      <mat-form-field>
+        <mat-select placeholder="Должность">
+          <mat-option [value]="0"> Секретарь </mat-option> 
+          <mat-option [value]="1"> Начальник </mat-option> 
+          <mat-option [value]="2"> Директор </mat-option> 
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Отдел">
+          <mat-option [value]="0"> Департамент управления персоналом </mat-option> 
+          <mat-option [value]="1"> Департамент управления рисками  </mat-option>  
+        </mat-select>
+      </mat-form-field>
+      <section class="permission-section">
+        <label> Доступы </label>
+        <mat-checkbox color="primary"> Создание депозита </mat-checkbox>
+        <mat-checkbox color="primary"> Закрытие депозита </mat-checkbox>
+        <mat-checkbox color="primary"> Одобрение кредита </mat-checkbox>
+        <mat-checkbox color="primary"> Одобрение открытия счета </mat-checkbox>
+      </section>
+      <div class="mat-row"> 
+        <button mat-button color="accent" type="submit">Добавить</button>
+      </div>
+    </form>
+     </mat-card-content>
+  </mat-card>
+</div>

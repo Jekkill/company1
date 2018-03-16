@@ -11,20 +11,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 // Компоненты и модули, созданные пользователем
-import { AppRoutingModule } from './app-routing.module'; 
 
+import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
+import { MenuComponent } from './menu/menu.component';
 import { TableComponent } from './table/table.component';
 import { ContactComponent } from './contact/contact.component';
+import { AddContactComponent } from './add-contact/add-contact.component'; 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent, 
     TableComponent,
-    ContactComponent
+    ContactComponent,
+    AddContactComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +42,13 @@ import { ContactComponent } from './contact/contact.component';
     BrowserAnimationsModule, 
     MatTableModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule,
+    MatRadioModule, 
+    MatCardModule,
+    MatCheckboxModule,
+    MatIconModule, 
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

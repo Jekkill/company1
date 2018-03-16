@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { Contact } from '../shared/contact.model'; 
-
+import { Contact } from '../shared/contact.model';
 
 @Component({
   selector: 'app-contact',
@@ -9,9 +8,9 @@ import { Contact } from '../shared/contact.model';
 })
 export class ContactComponent implements OnInit {
 
-	@Input() contact: Contact;
+  @Input() contact: Contact;
 
-	@HostBinding('class') columnClass='four wide column'; 
+  @HostBinding('class') columnClass = 'four wide column';
 
   constructor() { }
 

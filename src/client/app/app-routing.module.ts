@@ -5,16 +5,16 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 
 const routes: Routes = [
 	{
-		path: '/', 
-		redirectTo: 'table', 
+		path: '', 
+		redirectTo: 'contacts', 
 		pathMatch: 'full'
 	}, 
 	{
-		path: '/contacts', 
+		path: 'contacts', 
 		component: TableComponent
 	}, 
 	{
-		path: '/new', 
+		path: 'new', 
 		component: AddContactComponent
 	}
 ]

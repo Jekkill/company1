@@ -1,0 +1,19 @@
+.form-card {
+	width: 50%;
+	margin: 0 auto;
+}
+.mat-card-title {
+	text-align: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.permission-section {
+	display: flex; 
+	flex-direction: column;
+}
+.form > * {
+	width: 100%;
+}
