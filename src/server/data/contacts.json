@@ -1,0 +1,42 @@
+[
+	{
+		"lastname": "Иванов",
+		"firstname": "Иван", 
+		"patronymic": "Иванович", 
+		"gender": "М", 
+		"photo_url": "/profiles/jennifer-mendoza.jpg", 
+		"job_title": "секретарь", 
+		"department":"Департамент управления персоналом", 
+		"permissions": "per1"
+	}, 
+	{
+		"lastname": "Петров",
+		"firstname": "Петр", 
+		"patronymic": "Петрович", 
+		"gender": "М", 
+		"photo_url": "/profiles/ирина_иванова.jpg", 
+		"job_title": "начальник", 
+		"department": "Департамент управления персоналом",  
+		"permissions": "per2"
+	},
+	{
+		"lastname": "Сидорова",
+		"firstname": "Юлия", 
+		"patronymic": "Михайловна", 
+		"gender": "Ж", 
+		"photo_url": "/profiles/jennifer-mendoza.jpg", 
+		"job_title": "секретарь", 
+		"department": "Департамент управления рисками",  
+		"permissions": "per3"
+	},
+	{
+		"lastname": "Михеев",
+		"firstname": "Антон", 
+		"patronymic": "Олегович", 
+		"gender": "М", 
+		"photo_url": "/profiles/jennifer-mendoza.jpg", 
+		"job_title": "директор", 
+		"department": "Департамент управления рисками",  
+		"permissions": "per4"
+	}
+]

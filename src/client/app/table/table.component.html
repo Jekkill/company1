@@ -1,3 +1,88 @@
-<p>
-  table works!
-</p>
+<div class="container"> 
+	<div class='mat-row'> 
+		<button [routerLink] = "['/new']" mat-button color="primary"> <i class="material-icons">add_circle_outline</i>Добавить сотрудника </button>
+	</div>
+  <div class="mat-row">
+
+    <mat-form-field>
+      <input matInput (keyup)="applyLastNameFilter($event.target.value)" placeholder="Фамилия">
+    </mat-form-field>
+    <mat-form-field>
+  	  <mat-select placeholder="Должность" (change)=togglePosition($event.value)>
+    	<!-- Вставить после получения значений 
+	    	<mat-option *ngFor="let food of foods" [value]="food.value">
+	      	{{ food.viewValue }}
+	      	</mat-option>
+      	-->
+      	<mat-option [value]="0"> Секретарь </mat-option> 
+      	<mat-option [value]="1"> Начальник </mat-option> 
+      	<mat-option [value]="2"> Директор </mat-option> 
+      	<mat-option [value]="all"> Все </mat-option>
+      </mat-select>
+	</mat-form-field>
+	<mat-form-field>
+      <mat-select placeholder="Департамент" (change)=toggleDepartment($event.value)>
+    	<!-- Вставить после получения значений 
+	    	<mat-option *ngFor="let food of foods" [value]="food.value">
+	      	{{ food.viewValue }}
+	      	</mat-option>
+      	-->
+      	<mat-option [value]="0"> Департамент управления персоналом </mat-option> 
+      	<mat-option [value]="1"> Департамент управления рисками  </mat-option> 
+      	<mat-option [value]="all"> Все </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row">
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Фамилия -->
+    <ng-container matColumnDef="lastname">
+      <mat-header-cell *matHeaderCellDef> Фамилия </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.lastname}} </mat-cell>
+    </ng-container>
+	
+	<!-- Имя -->
+      <ng-container matColumnDef="firstname">
+      <mat-header-cell *matHeaderCellDef> Имя </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.firstname}} </mat-cell>
+    </ng-container>
+	
+	<!-- Отчество -->
+      <ng-container matColumnDef="patronymic">
+      <mat-header-cell *matHeaderCellDef> Отчество </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.patronymic}} </mat-cell>
+    </ng-container>
+
+    <!-- Должность -->
+      <ng-container matColumnDef="job_title">
+      <mat-header-cell *matHeaderCellDef> Должность </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.job_title}} </mat-cell>
+    </ng-container>
+
+    <!-- Отдел -->
+    <ng-container matColumnDef="department">
+      <mat-header-cell *matHeaderCellDef> Отдел </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.department}} </mat-cell>
+    </ng-container>
+
+	<!-- Фото --> 
+     <ng-container matColumnDef="photo">
+      <mat-header-cell *matHeaderCellDef> Фото </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> <img [src]="contact?.photo_url" width="100px"> </mat-cell>
+    </ng-container>
+
+	<!-- Редактирование --> 
+	<ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> <a href="#"> просмотр </a> <a href="#"> удалить </a> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
+</div>
+
