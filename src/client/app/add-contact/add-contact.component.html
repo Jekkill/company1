@@ -5,7 +5,7 @@
     </mat-card-header>
     <mat-card-content> 
         <i class="material-icons md-64 status-ok">check_circle</i>
-        <span class="message"> Пользователь c №  добавлен! </span>
+        <span class="message"> Пользователь добавлен! </span>
     </mat-card-content>
   </mat-card>
   <mat-card class="form-card"> 
@@ -13,12 +13,12 @@
       <mat-card-title>Добавить сотрудника</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-    <form class="form" #contactForm="ngForm" (submit)='onSubmit(contactForm)' [class.loading]="loading" method="post" enctype="multipart/form-data"> 
-      <mat-form-field>
-        <input matInput type="text" placeholder="Имя" name="firstName" required ngModel>
-      </mat-form-field>
+    <form class="form" #contactForm="ngForm" (submit)='onSubmit(contactForm)' [class.loading]="loading" method="post" enctype="multipart/form-data">
       <mat-form-field>
         <input matInput type="text" placeholder="Фамилия" name="lastName" required ngModel>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Имя" name="firstName" required ngModel>
       </mat-form-field>
       <mat-form-field>
         <input matInput type="text" placeholder="Отчество" name="patronymic" ngModel>

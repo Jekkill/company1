@@ -1,0 +1,72 @@
+.tooltip-card {
+	margin-left: 50px;
+	width: 300px;
+	height: 100px;
+}
+
+.tooltip-card .mat-card-header {
+	display: flex;
+	justify-content: flex-end;
+}
+.tooltip-card .mat-card-content {
+	display: flex;
+	align-items: flex-start;
+}
+
+.tooltip-card .status-ok {
+	color: green;
+	margin-right: 20px;
+}
+
+.tooltip-card .message{
+	font-size: 20px;
+}
+
+.form-card {
+	width: 50%;
+	margin: 20px auto;
+	border-radius: 20px;
+}
+
+.form-card .mat-card-header {
+	display: flex;
+	justify-content: center;
+}
+
+.form-card .mat-card-header .mat-card-title {
+	margin: 20px;
+	font-size: 20px;
+}
+
+.form-card .mat-card-content .mat-input-infix {
+  margin: 20px;
+}
+.form-card .mat-card-content .mat-row {
+	margin: 20px 0 20px 0;
+}
+
+.form-card .mat-card-content .mat-row-half {
+	margin: 10px 0 10px 0;
+}
+
+.form-card .mat-card-content .button-row {
+	display: flex;
+	justify-content: center;
+}
+
+.form-card .mat-card-content .button-row button {
+	margin: 20px;
+}
+
+.hidden-input {
+	display: none;
+}
+
+.permission-section {
+	display: flex; 
+	flex-direction: column;
+}
+
+.form > * {
+	width: 100%;
+}

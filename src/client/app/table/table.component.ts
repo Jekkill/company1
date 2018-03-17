@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response  } from '@angular/http'; 
-import 'rxjs/add/operator/map';
 import { Contact } from '../shared/contact.model'; 
 import { MatTableDataSource } from '@angular/material';
-
+import { ApiService } from '../shared/api.service'; 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -24,20 +22,20 @@ export class TableComponent implements OnInit {
   	// Фильтр по должности 
   	togglePosition(position: number) {
   		this.dataSource.filterPredicate =
-      		(data: Contact, filter: string) => data.job_title_name == filter || filter === 'все';
+      		(data: Contact, filter: string) => data.job_title_name == filter || filter === 'all';
   		let filterPositionValue; 
   		switch (position) {
   			case 1:  filterPositionValue = 'Секретарь'; break;  
   			case 2: filterPositionValue = 'Начальник'; break; 
   			case 3: filterPositionValue = 'Директор'; break; 
-  			default: filterPositionValue = 'все'; 
+  			default: filterPositionValue = 'all'; 
   		}
   		this.dataSource.filter = filterPositionValue; 
   	}
   	// Фильтр по отделу
   	toggleDepartment(department: number) {
   		this.dataSource.filterPredicate =
-      		(data: Contact, filter: string) => data.department_name == filter || filter === 'все';
+      		(data: Contact, filter: string) => data.department_name == filter || filter === 'all';
   		let filterDepartmentValue; 
   		if (department == 1) {
   			filterDepartmentValue = 'Департамент управления персоналом';
@@ -45,21 +43,18 @@ export class TableComponent implements OnInit {
   		} else if (department == 2) {
   			filterDepartmentValue = 'Департамент управления рисками'; 
   		} else {
-  			filterDepartmentValue = 'все'; 
+  			filterDepartmentValue = 'all'; 
   		}
   		this.dataSource.filter = filterDepartmentValue;
   	}
-  constructor( public http: Http ) { } 
+  constructor( public api: ApiService ) { } 
 
   ngOnInit() {
-  	this.http.get('/api/contacts')
-  		.map((res: Response) => res.json())
+  	this.api.get('/contacts')
   		.subscribe(data => this.dataSource.data = data);
-    this.http.get('/api/departments')
-      .map((res: Response) => res.json())
+    this.api.get('/departments')
       .subscribe(data =>  this.departments = data ); 
-    this.http.get('/api/jobTitles')
-      .map((res: Response) => res.json())
+    this.api.get('/jobTitles')
       .subscribe(data =>  this.jobTitles = data ); 
   } 
 

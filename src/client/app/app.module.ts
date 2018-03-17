@@ -25,7 +25,7 @@ import { MenuComponent } from './menu/menu.component';
 import { TableComponent } from './table/table.component';
 import { ContactComponent } from './contact/contact.component';
 import { AddContactComponent } from './add-contact/add-contact.component'; 
-
+import { ApiService } from './shared/api.service'; 
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
     MatIconModule, 
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

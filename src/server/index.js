@@ -32,7 +32,7 @@ app.use('/profiles', express.static(path.join(__dirname, 'profiles')));
 
 // Формируем главную таблицу, получаем данные по сотрудникам 
 app.get('/api/contacts', (req, res) => {
-	let query = `  SELECT lastname, firstname, patronymic, gender, photo_url, department_name, job_title_name 
+	let query = `  SELECT contact_id, lastname, firstname, patronymic, gender, photo_url, department_name, job_title_name 
 				   FROM contacts 
 				   LEFT JOIN departments ON department_id = contact_departmentID
 				   LEFT JOIN job_titles ON job_title_id = contact_job_title_id;  `;
@@ -67,20 +67,6 @@ app.get('/api/jobTitles', (req, res) => {
 
 // Добавить нового пользователя в базу данных 
 app.post('/api/contacts', (req, res) => {
-	/*let form = new formidable.IncomingForm(); 
-	form.parse(req, function(err, fields, files) {
-		console.log(files);
-		let oldpath = files.filetoupload.path;
-		let newpath = '/profiles'; 
-
-		res.write('File uploaded'); 
-		res.end(); 
-	})
-  		 var sql = "INSERT INTO customers (name, address) VALUES ('Company Inc', 'Highway 37')";
-  		con.query(sql, function (err, result) {
-    		if (err) throw err;
-    	console.log("1 record inserted");
-  		});*/
   		const user = req.body; 
   		console.log(user.lastname);
   		let query = `  INSERT INTO contacts (lastname, firstname, patronymic, gender, photo_url, contact_job_title_ID, contact_departmentID, permissions)
@@ -95,31 +81,34 @@ app.post('/api/contacts', (req, res) => {
 		});
 });
 
-/* app.post('/fileupload', (req, res) => {
-	console.log(req);
-})*/
+// Редактировать информацию о пользователе 
+
+app.post('/api/contacts/:id', (req, res) => {
+  		const user = req.body; 
+  		console.log(user.lastname);
+  		var sql = "UPDATE customers SET address = 'Canyon 123' WHERE address = 'Valley 345'";
+  		let query = `   UPDATE  contacts 
+  						SET 
+  						lastname = '${user.lastname}', 
+  						firstname = '${user.firstname}', 
+  						patronymic = '${user.patronymic}', 
+  						gender = '${user.gender}', 
+  						photo_url = '${user.photo_url}', 
+  						contact_job_title_ID = ${user.job_title_name}, 
+  						contact_departmentID = ${user.department_name}, 
+  						permissions = '${user.permissions}'
+  						WHERE contact_id = ${id};`
+		console.log(query);
+		con.query(query, function (err, result, fields) {
+	    	if (err) {
+	    		return res.status(500).json({ error: 'Error inserting new record!' }); 
+	    	}
+	    	const newContact = result;
+	    	return res.status(201).json(newContact);
+		});
+});
 
 // В случае, если запрос пользователя не будет совпадать ни с одним из перечисленных выше
 app.get('*', (req, res) => {
 	return res.sendFile(path.join(__dirname, 'public/index.html')); 
 });
-
-/*
-
-
-app.post('/api/contacts', (req, res) => {
-	const user = req.body; 
-	const contactsCollection = database.collection('contacts');
-	contactsCollection.insertOne(user, (err, r) => {
-		if (err) {
-			return res.status(500).json({ error: 'Error inserting new record'}); 
-		}
-
-		const newContact = r.ops[0]; 
-
-		return res.status(201).json(newContact); 
-	})
-});
-
-
-*/
