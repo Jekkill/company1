@@ -1,51 +1,69 @@
 <div class="form-container">
+  <mat-card class="tooltip-card" *ngIf="newContact"> 
+    <mat-card-header>
+        <i class="material-icons" (click)="newContact = null">close</i> 
+    </mat-card-header>
+    <mat-card-content> 
+        <i class="material-icons md-64 status-ok">check_circle</i>
+        <span class="message"> Пользователь c №  добавлен! </span>
+    </mat-card-content>
+  </mat-card>
   <mat-card class="form-card"> 
     <mat-card-header>
       <mat-card-title>Добавить сотрудника</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-    <form class="form" #contactForm="ngForm" (submit)='onSubmit'> 
+    <form class="form" #contactForm="ngForm" (submit)='onSubmit(contactForm)' [class.loading]="loading" method="post" enctype="multipart/form-data"> 
       <mat-form-field>
-        <input matInput type="text" placeholder="Имя" name="firstName" required>
+        <input matInput type="text" placeholder="Имя" name="firstName" required ngModel>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" placeholder="Фамилия" name="lastName" required>
+        <input matInput type="text" placeholder="Фамилия" name="lastName" required ngModel>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" placeholder="Отчество" name="patronymic">
+        <input matInput type="text" placeholder="Отчество" name="patronymic" ngModel>
       </mat-form-field>
-      <mat-radio-group name="gender">
-        <label> Пол: </label>
-        <mat-radio-button value="М">М</mat-radio-button>
-        <mat-radio-button value="Ж">Ж</mat-radio-button>
-      </mat-radio-group>
-      <button (click)="fileInput.click()">
-        <mat-icon>library_add</mat-icon>
-          <span>Select</span>
-        <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
-      </button>
-      <mat-form-field>
-        <mat-select placeholder="Должность">
-          <mat-option [value]="0"> Секретарь </mat-option> 
-          <mat-option [value]="1"> Начальник </mat-option> 
-          <mat-option [value]="2"> Директор </mat-option> 
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="Отдел">
-          <mat-option [value]="0"> Департамент управления персоналом </mat-option> 
-          <mat-option [value]="1"> Департамент управления рисками  </mat-option>  
-        </mat-select>
-      </mat-form-field>
-      <section class="permission-section">
-        <label> Доступы </label>
-        <mat-checkbox color="primary"> Создание депозита </mat-checkbox>
-        <mat-checkbox color="primary"> Закрытие депозита </mat-checkbox>
-        <mat-checkbox color="primary"> Одобрение кредита </mat-checkbox>
-        <mat-checkbox color="primary"> Одобрение открытия счета </mat-checkbox>
-      </section>
       <div class="mat-row"> 
-        <button mat-button color="accent" type="submit">Добавить</button>
+        <mat-radio-group name="gender" ngModel>
+          <label> Пол: </label>
+          <mat-radio-button value="М">М</mat-radio-button>
+          <mat-radio-button value="Ж">Ж</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="mat-row"> 
+        <label for="photo" class="upload-file">
+          <mat-icon>add_a_photo</mat-icon>
+        </label>
+        <input type="file"
+            id="photo"
+            class="hidden-input"
+            accept="image/jpeg, .jpeg, image/png, .png, image/.jpg, .jpg"
+            (change)="selectFile($event)"
+            name="photo"
+            ngModel>
+      </div>
+      <mat-form-field>
+        <mat-select placeholder="Должность" name="jobTitle" ngModel>
+          <mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle.job_title_id" > {{ jobTitle.job_title_name }} </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Отдел" name="department" ngModel>
+          <mat-option *ngFor="let department of departments" [value]="department.department_id" > {{ department.department_name }} </mat-option>  
+        </mat-select>
+      </mat-form-field>
+      <div class="mat-row"> 
+        <section class="permission-section">
+          <div class="mat-row-half">  <label> Доступы </label> </div>
+          <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionOpenDeposit" ngModel> Создание депозита </mat-checkbox> </div>
+          <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionCloseDeposit" ngModel> Закрытие депозита </mat-checkbox> </div>
+          <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionApproveCredit" ngModel> Одобрение кредита </mat-checkbox> </div>
+          <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionApproveAddAccount" ngModel> Одобрение открытия счета </mat-checkbox> </div>
+        </section>
+      </div>
+      <div class="mat-row button-row"> 
+        <button mat-raised-button color="primary" type="submit"> Добавить </button>
+        <button mat-raised-button color="accent" type="reset"> Очистить </button> 
       </div>
     </form>
      </mat-card-content>

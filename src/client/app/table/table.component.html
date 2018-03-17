@@ -7,26 +7,13 @@
     </mat-form-field>
     <mat-form-field>
   	  <mat-select placeholder="Должность" (change)=togglePosition($event.value)>
-    	<!-- Вставить после получения значений 
-	    	<mat-option *ngFor="let food of foods" [value]="food.value">
-	      	{{ food.viewValue }}
-	      	</mat-option>
-      	-->
-      	<mat-option [value]="0"> Секретарь </mat-option> 
-      	<mat-option [value]="1"> Начальник </mat-option> 
-      	<mat-option [value]="2"> Директор </mat-option> 
+      	<mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle.job_title_id" > {{ jobTitle.job_title_name }} </mat-option> 
       	<mat-option [value]="all"> Все </mat-option>
       </mat-select>
 	</mat-form-field>
 	<mat-form-field>
       <mat-select placeholder="Департамент" (change)=toggleDepartment($event.value)>
-    	<!-- Вставить после получения значений 
-	    	<mat-option *ngFor="let food of foods" [value]="food.value">
-	      	{{ food.viewValue }}
-	      	</mat-option>
-      	-->
-      	<mat-option [value]="0"> Департамент управления персоналом </mat-option> 
-      	<mat-option [value]="1"> Департамент управления рисками  </mat-option> 
+      	<mat-option *ngFor="let department of departments" [value]="department.department_id" > {{ department.department_name }} </mat-option> 
       	<mat-option [value]="all"> Все </mat-option>
       </mat-select>
     </mat-form-field>
@@ -56,13 +43,13 @@
     <!-- Должность -->
       <ng-container matColumnDef="job_title">
       <mat-header-cell *matHeaderCellDef> Должность </mat-header-cell>
-      <mat-cell *matCellDef="let contact"> {{contact.job_title}} </mat-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.job_title_name}} </mat-cell>
     </ng-container>
 
     <!-- Отдел -->
     <ng-container matColumnDef="department">
       <mat-header-cell *matHeaderCellDef> Отдел </mat-header-cell>
-      <mat-cell *matCellDef="let contact"> {{contact.department}} </mat-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.department_name}} </mat-cell>
     </ng-container>
 
 	<!-- Фото --> 

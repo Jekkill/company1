@@ -5,9 +5,9 @@
 		"patronymic": "Иванович", 
 		"gender": "М", 
 		"photo_url": "/profiles/jennifer-mendoza.jpg", 
-		"job_title": "секретарь", 
-		"department":"Департамент управления персоналом", 
-		"permissions": "per1"
+		"jobTitleID": 1, 
+		"departmentID": 1, 
+		"permissionsID": ["permissionOpenDeposit", "permissionCloseDeposit", "permissionApproveCredit", "permissionApproveAddAccount"]
 	}, 
 	{
 		"lastname": "Петров",
@@ -15,9 +15,9 @@
 		"patronymic": "Петрович", 
 		"gender": "М", 
 		"photo_url": "/profiles/ирина_иванова.jpg", 
-		"job_title": "начальник", 
-		"department": "Департамент управления персоналом",  
-		"permissions": "per2"
+		"job_title": 1, 
+		"department": 2,  
+		"permissions": ["permissionOpenDeposit", "permissionCloseDeposit", "permissionApproveCredit"]
 	},
 	{
 		"lastname": "Сидорова",
@@ -25,9 +25,9 @@
 		"patronymic": "Михайловна", 
 		"gender": "Ж", 
 		"photo_url": "/profiles/jennifer-mendoza.jpg", 
-		"job_title": "секретарь", 
-		"department": "Департамент управления рисками",  
-		"permissions": "per3"
+		"job_title": 2, 
+		"department": 2,  
+		"permissions": ["permissionOpenDeposit", "permissionCloseDeposit", "permissionApproveCredit"]
 	},
 	{
 		"lastname": "Михеев",
@@ -35,8 +35,8 @@
 		"patronymic": "Олегович", 
 		"gender": "М", 
 		"photo_url": "/profiles/jennifer-mendoza.jpg", 
-		"job_title": "директор", 
-		"department": "Департамент управления рисками",  
-		"permissions": "per4"
+		"job_title": 2, 
+		"department": 1,  
+		"permissions": ["permissionOpenDeposit", "permissionCloseDeposit", "permissionApproveCredit", "permissionApproveAddAccount"]
 	}
 ]

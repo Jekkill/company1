@@ -13,25 +13,23 @@ export class TableComponent implements OnInit {
 	displayedColumns = ['lastname', 'firstname', 'patronymic', 'job_title', 'department', 'photo', 'edit'];
 	contacts: Contact[]; 
 	dataSource = new MatTableDataSource();
+  jobTitles: Object[]; 
+  departments: Object[];
 	// Фильтр по фамилии - не работает, надо разобраться почему
 	applyLastNameFilter(lastname: string) {
-		this.dataSource.filterPredicate =
-      		(data: Contact['lastname'], filter: string) => data == filter;
 	    lastname = lastname.trim(); // Удаляем лишние пробелы 
 	    lastname = lastname.toLowerCase(); // И переводим в нижний регистр
 	    this.dataSource.filter = lastname;
-	    console.log(this.dataSource.filterPredicate);
   	}; 
   	// Фильтр по должности 
   	togglePosition(position: number) {
   		this.dataSource.filterPredicate =
-      		(data: Contact, filter: string) => data.job_title == filter || filter === 'все';
-  		//position = position.trim(); 
+      		(data: Contact, filter: string) => data.job_title_name == filter || filter === 'все';
   		let filterPositionValue; 
   		switch (position) {
-  			case 0: filterPositionValue = 'секретарь'; break;  
-  			case 1: filterPositionValue = 'начальник'; break; 
-  			case 2: filterPositionValue = 'директор'; break; 
+  			case 1:  filterPositionValue = 'Секретарь'; break;  
+  			case 2: filterPositionValue = 'Начальник'; break; 
+  			case 3: filterPositionValue = 'Директор'; break; 
   			default: filterPositionValue = 'все'; 
   		}
   		this.dataSource.filter = filterPositionValue; 
@@ -39,12 +37,12 @@ export class TableComponent implements OnInit {
   	// Фильтр по отделу
   	toggleDepartment(department: number) {
   		this.dataSource.filterPredicate =
-      		(data: Contact, filter: string) => data.department == filter || filter === 'все';
+      		(data: Contact, filter: string) => data.department_name == filter || filter === 'все';
   		let filterDepartmentValue; 
-  		if (department == 0) {
+  		if (department == 1) {
   			filterDepartmentValue = 'Департамент управления персоналом';
   			console.log(filterDepartmentValue);
-  		} else if (department == 1) {
+  		} else if (department == 2) {
   			filterDepartmentValue = 'Департамент управления рисками'; 
   		} else {
   			filterDepartmentValue = 'все'; 
@@ -56,7 +54,13 @@ export class TableComponent implements OnInit {
   ngOnInit() {
   	this.http.get('/api/contacts')
   		.map((res: Response) => res.json())
-  		.subscribe(data => {this.dataSource.data = data; console.log(data)});
+  		.subscribe(data => this.dataSource.data = data);
+    this.http.get('/api/departments')
+      .map((res: Response) => res.json())
+      .subscribe(data =>  this.departments = data ); 
+    this.http.get('/api/jobTitles')
+      .map((res: Response) => res.json())
+      .subscribe(data =>  this.jobTitles = data ); 
   } 
 
 }
