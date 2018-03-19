@@ -41,8 +41,13 @@
 .form-card .mat-card-content .mat-input-infix {
   margin: 20px;
 }
+
 .form-card .mat-card-content .mat-row {
 	margin: 20px 0 20px 0;
+}
+
+.form-card .mat-card-content img {
+	max-width: 300px;
 }
 
 .form-card .mat-card-content .mat-row-half {

@@ -1,35 +1,31 @@
 <div class="form-container">
-  <mat-card class="tooltip-card" *ngIf="newContact"> 
-    <mat-card-header>
-        <i class="material-icons" (click)="newContact = null">close</i> 
-    </mat-card-header>
-    <mat-card-content> 
-        <i class="material-icons md-64 status-ok">check_circle</i>
-        <span class="message"> Пользователь добавлен! </span>
-    </mat-card-content>
-  </mat-card>
   <mat-card class="form-card"> 
     <mat-card-header>
       <mat-card-title> Редактировать</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-    <form class="form" #contactForm="ngForm" (submit)='onSubmit(contactForm)' [class.loading]="loading" method="post" enctype="multipart/form-data">
+    <form class="form" #contactForm="ngForm" (submit)='updateContact(contactForm)' [class.loading]="loading" method="post" enctype="multipart/form-data">
       <mat-form-field>
-        <input matInput type="text" placeholder="Фамилия" name="lastName" required ngModel>
+        <input matInput type="text" placeholder="Фамилия" name="lastName" required   [(ngModel)] = "this.oldContact[0].lastname"  ngModel>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" placeholder="Имя" name="firstName" required ngModel>
+        <input matInput type="text" placeholder="Имя" name="firstName" required  [(ngModel)] = "this.oldContact[0].firstname" ngModel>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" placeholder="Отчество" name="patronymic" ngModel>
+        <input matInput type="text" placeholder="Отчество" name="patronymic" [(ngModel)] = "this.oldContact[0].patronymic" ngModel>
       </mat-form-field>
       <div class="mat-row"> 
-        <mat-radio-group name="gender" ngModel>
+        <mat-radio-group name="gender" [(ngModel)] = "this.oldContact[0].gender" ngModel>
           <label> Пол: </label>
           <mat-radio-button value="М">М</mat-radio-button>
           <mat-radio-button value="Ж">Ж</mat-radio-button>
         </mat-radio-group>
       </div>
+      <img [src]="this.oldContact[0].photo_url">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Фото" name="photoUrl" required   [(ngModel)] = "this.oldContact[0].photo_url"  ngModel>
+      </mat-form-field>
+      <!-- Блок с загрузкой фото
       <div class="mat-row"> 
         <label for="photo" class="upload-file">
           <mat-icon>add_a_photo</mat-icon>
@@ -41,24 +37,24 @@
             (change)="selectFile($event)"
             name="photo"
             ngModel>
-      </div>
+      </div>-->
       <mat-form-field>
-        <mat-select placeholder="Должность" name="jobTitle" ngModel>
-          <mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle.job_title_id" > {{ jobTitle.job_title_name }} </mat-option>
+        <mat-select placeholder="Должность" name="jobTitle" [ngModel]="this.oldContact[0].job_title_id" ngModel>
+          <mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle.job_title_id"  > {{ jobTitle.job_title_name }} </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Отдел" name="department" ngModel>
-          <mat-option *ngFor="let department of departments" [value]="department.department_id" > {{ department.department_name }} </mat-option>  
+        <mat-select placeholder="Отдел" name="department" [ngModel]="this.oldContact[0].department_id" ngModel>
+          <mat-option *ngFor="let department of departments" [value]="department.department_id" > {{ department.department_name }} </mat-option>
         </mat-select>
       </mat-form-field>
       <div class="mat-row"> 
         <section class="permission-section">
           <div class="mat-row-half">  <label> Доступы </label> </div>
           <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionOpenDeposit" ngModel> Создание депозита </mat-checkbox> </div>
-          <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionCloseDeposit" ngModel> Закрытие депозита </mat-checkbox> </div>
-          <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionApproveCredit" ngModel> Одобрение кредита </mat-checkbox> </div>
-          <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionApproveAddAccount" ngModel> Одобрение открытия счета </mat-checkbox> </div>
+          <div class="mat-row-half"> <mat-checkbox checked color="primary" name="permissionCloseDeposit" ng-checked="permInArray('Закрытие депозита', this.contact[0].permissions)" ngModel> Закрытие депозита </mat-checkbox> </div>
+          <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionApproveCredit" ng-checked="permInArray('Одобрение кредита', this.contact[0].permissions)" ngModel> Одобрение кредита </mat-checkbox> </div>
+          <div class="mat-row-half"> <mat-checkbox color="primary" name="permissionApproveAddAccount" ng-checked="permInArray('Одобрение открытия счета', this.contact[0].permissions)" ngModel> Одобрение открытия счета </mat-checkbox> </div>
         </section>
       </div>
       <div class="mat-row button-row"> 

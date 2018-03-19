@@ -18,6 +18,7 @@
       </mat-select>
     </mat-form-field>
   </div>
+ <!-- <h1 *ngIf = "deletedContact"> Пользователь был удален. Перезагрузите страницу! </h1> --> 
   <div class="row">
 
   <mat-table #table [dataSource]="dataSource">
@@ -55,15 +56,15 @@
 	<!-- Фото --> 
      <ng-container matColumnDef="photo">
       <mat-header-cell *matHeaderCellDef> Фото </mat-header-cell>
-      <mat-cell *matCellDef="let contact"> <img [src]="contact?.photo_url" width="100px"> </mat-cell>
+      <mat-cell *matCellDef="let contact"> <img [src]="contact?.photo_url" height="100px"> </mat-cell>
     </ng-container>
 
 	<!-- Редактирование --> 
 	<ng-container matColumnDef="edit">
       <mat-header-cell *matHeaderCellDef> </mat-header-cell>
       <mat-cell *matCellDef="let contact"> 
-        <button mat-button color="primary" [routerLink] ="['/edit/' + contact.contact_id]"> Редактировать </button>
-        <button mat-button color="primary"> Удалить </button>
+        <button mat-raised-button color="primary" [routerLink] ="['/edit/', contact.contact_id]"><i class="material-icons">mode_edit</i> Редактировать </button>
+        <button mat-raised-button color="accent" (click) = "deleteContact(contact.contact_id)"><i class="material-icons">delete_forever</i> Удалить </button>
       </mat-cell>
     </ng-container>
 

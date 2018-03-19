@@ -11,9 +11,9 @@ import { ApiService } from '../shared/api.service';
 
 export class AddContactComponent implements OnInit {
 
-	loading: Boolean = false; 
-	newContact: Contact; 
-	jobTitles: Object[]; 
+	  loading: Boolean = false; 
+	  newContact: Contact; 
+	  jobTitles: Object[]; 
   	departments: Object[];
   	tempPhoto: Object; 
 
@@ -48,7 +48,8 @@ export class AddContactComponent implements OnInit {
       		.subscribe(data =>  this.jobTitles = data ); 
   	}
 
-  	onSubmit(form: NgForm) {
+  	addContact(form: NgForm) {
+      // получаем данные с форм
   		this.loading = true; 
   		const formValues = Object.assign({}, form.value); 
   		let permissions = []; 
@@ -70,7 +71,7 @@ export class AddContactComponent implements OnInit {
   			firstname: formValues.firstName, 
   			patronymic: formValues.patronymic, 
   			gender: formValues.gender, 
-  			photo_url: formValues.photo,
+  			photo_url: formValues.photoUrl,
   			job_title_name: formValues.jobTitle, 
   			department_name: formValues.department,
   			permissions: permissions
