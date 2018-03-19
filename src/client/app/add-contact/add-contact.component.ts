@@ -10,7 +10,7 @@ import { ApiService } from '../shared/api.service';
 })
 
 export class AddContactComponent implements OnInit {
-
+    // Задаем переменные 
 	  loading: Boolean = false; 
 	  newContact: Contact; 
 	  jobTitles: Object[]; 
@@ -21,10 +21,7 @@ export class AddContactComponent implements OnInit {
   		public api: ApiService
   	) { }
 
-  	showInfo(e: any) {
-  		console.log(e);
-  	};
-
+    /* Выбрать файл для загрузки на сервер 
   	selectFile(event) {	
   		let reader = new FileReader(); 
   		if (event.target.files && event.target.files.length > 0) {
@@ -38,8 +35,9 @@ export class AddContactComponent implements OnInit {
   				}); 
   			}
   		}
-  		
-  	};
+  	};*/ 
+
+    // Получаем необходимые данные по отделам и должностям
 
   	ngOnInit() {
   		this.api.get('/departments')
@@ -48,6 +46,7 @@ export class AddContactComponent implements OnInit {
       		.subscribe(data =>  this.jobTitles = data ); 
   	}
 
+    // Добавить контакт на сервер 
   	addContact(form: NgForm) {
       // получаем данные с форм
   		this.loading = true; 
@@ -76,7 +75,6 @@ export class AddContactComponent implements OnInit {
   			department_name: formValues.department,
   			permissions: permissions
   		}
-  		console.log(contact);
   		this.api.post('contacts', contact)
   			.subscribe(data => {
   				form.reset();

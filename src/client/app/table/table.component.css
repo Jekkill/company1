@@ -1,3 +1,8 @@
+.filters {
+	display: flex;
+	justify-content: space-between;
+}
+
 .mat-column-photo {
 	max-width: 150px;
 }

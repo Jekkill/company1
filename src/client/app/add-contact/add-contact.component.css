@@ -2,12 +2,20 @@
 	margin-left: 50px;
 	width: 300px;
 	height: 100px;
+	position: fixed;
+	top: 300px;
+	left: 400px;
 }
 
 .tooltip-card .mat-card-header {
 	display: flex;
 	justify-content: flex-end;
 }
+
+.tooltip-card .mat-card-header i{
+	cursor: pointer;
+}
+
 .tooltip-card .mat-card-content {
 	display: flex;
 	align-items: flex-start;

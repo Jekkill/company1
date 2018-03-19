@@ -1,27 +1,42 @@
 # Company1employees
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
+# Общая информация 
 
-## Development server
+Проект создан для реализации CRUD схемы по получению / добавлению / изменению и и удалению информации о пользователях. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+# Серверная часть
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Сервер реализован на Node.js с использованием библиотеки Express (основной скрипт для работы - index.js - находится в папке server).
+Находится в папке src/server.  
+В качестве базы данных использована MySQL (порт 3306). Скрипт для добавления первоначальной информации таблиц в базу данных находится в папке server/data. В качестве основной таблицы - таблица Contact, которая содержит следующую информацию: фамилия, имя, отчество, пол, путь к фотографии на сервере, должность, отдел, а также допустимые действия сотрудника.  
+Также на сервере организовано хранилище фотографий (находятся в папке server/profiles). 
 
-## Build
+# Клиентская часть
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Клиентская часть реализована на Angular 5 с использованием Material Design в качестве основной библиотеки. Находится в папке src/client.  Логика клиентской части реализована на языке typescript, стили на языке css, разметка - html. 
 
-## Running unit tests
+Основной компонент приложения находится в папке table - это вся информация по сотрудникам в виде таблицы. Помимо таблицы здесь реализован фильтр по должностям, отделам и фамилии. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Для добавления нового сотрудника - компонент add-contact - представляет из себя форму для создания нового сотрудника. 
 
-## Running end-to-end tests
+Для изменения информации о сотруднике - компонент contact - также представляет из себя форму, но уже со значениями конкретного сотрудника. 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+В папке menu - верхняя часть страницы, из которой можно совершить навигацию - добавить нового сотрудника или вернуться на главную страницу. 
 
-## Further help
+В папке shared находится модель Contact, которая описывает всех сотрудников. Также реализован сервис api - для удобства работы с методами (get, post, create, delete). 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Более подробную информацию Вы всегда можете найти внутри приложения. 
+
+# NPM - команды 
+
+Для более быстрой сборки проекта, его тестирования а также разработки были написаны следующие команды:
+
+Для полной сборки: серверной части проекта - start:server, клиентской - build, серверной и клиентской - start.
+
+Для быстрой сборки проекта при разработке: серверной - watch:server,
+клинтской - watch:client, серверной и клиентской - watch. 
+
+
+
+

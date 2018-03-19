@@ -1,6 +1,6 @@
 <div class="container"> 
 
-  <div class="mat-row">
+  <div class="mat-row filters">
 
     <mat-form-field>
       <input matInput (keyup)="applyLastNameFilter($event.target.value)" placeholder="Фамилия">
@@ -8,13 +8,11 @@
     <mat-form-field>
   	  <mat-select placeholder="Должность" (change)=togglePosition($event.value)>
       	<mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle.job_title_id" > {{ jobTitle.job_title_name }} </mat-option> 
-      	<mat-option [value]="all"> Все </mat-option>
       </mat-select>
 	</mat-form-field>
 	<mat-form-field>
       <mat-select placeholder="Департамент" (change)=toggleDepartment($event.value)>
       	<mat-option *ngFor="let department of departments" [value]="department.department_id" > {{ department.department_name }} </mat-option> 
-      	<mat-option [value]="all"> Все </mat-option>
       </mat-select>
     </mat-form-field>
   </div>

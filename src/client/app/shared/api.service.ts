@@ -9,9 +9,13 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class ApiService {
 
+  // Задаем базовый URL 
+
   private baseUrl = environment.apiUrl;
 
   constructor(private http: Http) { }
+
+  // Перечисляем методы 
 
   get(url: string) {
     return this.request(url, RequestMethod.Get);
@@ -29,6 +33,8 @@ export class ApiService {
     return this.request(url, RequestMethod.Delete);
   }
 
+  // Общая функция для всех методов 
+
   request(url: string, method: RequestMethod, body?: Object) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -44,11 +50,12 @@ export class ApiService {
     }
 
     const request = new Request(requestOptions);
-    console.log(requestOptions);
     return this.http.request(request)
       .map((res: Response) => res.json())
       .catch((res: Response) => this.onRequestError(res));
   }
+
+  // В случае ошибки обработки запроса 
 
   onRequestError(res: Response) {
     const statusCode = res.status;
